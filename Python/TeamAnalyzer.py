@@ -29,20 +29,22 @@ for i, arg in enumerate(sys.argv):
     table.execute('SELECT name FROM imported_pokemon_data WHERE pokedex_number = ?', (arg,))
     name = table.fetchone()
 
+    # EXTRA CREDIT
     table.execute('SELECT pokedex_number FROM imported_pokemon_data WHERE name = ?', (arg,))
     number = table.fetchone()
 
     table.execute('SELECT type1 FROM imported_pokemon_data WHERE pokedex_number = ?', (arg,))
     type1 = table.fetchone()
 
+    # EXTRA CREDIT
     table.execute('SELECT type1 FROM imported_pokemon_data WHERE name = ?', (arg,))
-    hi = table.fetchone()
+    ec_type1 = table.fetchone()
 
     table.execute('SELECT type2 FROM imported_pokemon_data WHERE pokedex_number = ?', (arg,))
     type2 = table.fetchone()
 
     table.execute('SELECT type2 FROM imported_pokemon_data WHERE name = ?', (arg,))
-    bye = table.fetchone()
+    ec_type2 = table.fetchone()
 
     strong_values = []
     for type in types:
@@ -52,6 +54,7 @@ for i, arg in enumerate(sys.argv):
         if collection:
             strong_values.append(type)
 
+    # EXTRA CREDIT
     strong_valuesA = []
     for type in types:
         table.execute(f"SELECT against_{type} FROM imported_pokemon_data WHERE against_{type} > 1 AND name = ?", (arg,))
@@ -68,6 +71,7 @@ for i, arg in enumerate(sys.argv):
         if collection:
             weak_values.append(type)
 
+    # EXTRA CREDIT
     weak_valuesA = []
     for type in types:
         table.execute(f"SELECT against_{type} FROM imported_pokemon_data WHERE against_{type} < 1 AND name = ?", (arg,))
@@ -79,9 +83,9 @@ for i, arg in enumerate(sys.argv):
     if type1 and type2 and name and strong_values and weak_values:
         print(f"Analyzing {arg}")
         print(f"{name[0]} ({type1[0]} {type2[0]}) is strong against {strong_values} but weak against {weak_values}")
-    elif hi and bye and number and strong_valuesA and weak_valuesA:
+    elif ec_type1 and ec_type2 and number and strong_valuesA and weak_valuesA: # EXTRA CREDIT
         print(f"Analyzing {number[0]}")
-        print(f"{arg} ({hi[0]} {bye[0]}) is strong against {strong_valuesA} but weak against {weak_valuesA}")
+        print(f"{arg} ({ec_type1[0]} {ec_type2[0]}) is strong against {strong_valuesA} but weak against {weak_valuesA}")
     else:
         print(f"Pokedex number {arg} not found.")
 
