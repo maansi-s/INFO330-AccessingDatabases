@@ -78,10 +78,10 @@ for i, arg in enumerate(sys.argv):
 
     if type1 and type2 and name and strong_values and weak_values:
         print(f"Analyzing {arg}")
-        print(f"{name[0]} ({type1[0]} {type2[0]}) is strong against {strong_values} but weak against {weak_values}.")
+        print(f"{name[0]} ({type1[0]} {type2[0]}) is strong against {strong_values} but weak against {weak_values}")
     elif hi and bye and number and strong_valuesA and weak_valuesA:
         print(f"Analyzing {number[0]}")
-        print(f"{arg} ({hi[0]} {bye[0]}) is strong against {strong_valuesA} but weak against {weak_valuesA}.")
+        print(f"{arg} ({hi[0]} {bye[0]}) is strong against {strong_valuesA} but weak against {weak_valuesA}")
     else:
         print(f"Pokedex number {arg} not found.")
 
